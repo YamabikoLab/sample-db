@@ -1,0 +1,17 @@
+version: "3"
+services:
+  db:
+    image: sakiladb/mysql:5.7
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --explicit_defaults_for_timestamp
+    container_name: sakiladb
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=sakiladb
+      - PMA_USER=sakila
+      - PMA_PASSWORD=p_ssW0rd
+    ports:
+      - 8080:80
